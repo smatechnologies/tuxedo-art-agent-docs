@@ -31,7 +31,7 @@ module.exports = {
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/smatechnologies/tuxedo-art-agent-docs/blob/develop',
+            'https://github.com/smatechnologies/tuxedo-art-agent-docs/blob/main',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
