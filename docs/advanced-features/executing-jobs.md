@@ -17,4 +17,4 @@ The job definitions are made using the Tuxedo ART Job Type. The job definition i
 
 ![Tuxedo ART Job Type Example](../static/img/example-job.png)
 
-The image above shows an example of a Tuxedo ART job type definition. It should be noted that it is only possible to define Tuxedo ART jobs if a Tuxedo ART machine has been defined. For more information on defining Tuxedo ART jobs, refer to [Tuxedo ART Job Details](https://help.smatechnologies.com/opcon/core/latest/Files/Concepts/Tuxedo-ART-Job-Details.md) in the **Concepts** online help.
+The image above shows an example of a Tuxedo ART job type definition. It should be noted that it is only possible to define Tuxedo ART jobs if a Tuxedo ART machine has been defined. For more information on defining Tuxedo ART jobs, refer to [Tuxedo ART Job Details](https://help.smatechnologies.com/opcon/core/job-types/tuxedo-art) in the **Concepts** online help.
