@@ -6,6 +6,8 @@ sidebar_label: "Release notes"
 
 ## TuxedoART Agent 21.0.0
 
+2022 January
+
 :::note
 This release combines the previous .ksh & .jcl versions into a single agent. It is compatible with previous separate versions.
 :::
