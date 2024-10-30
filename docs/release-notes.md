@@ -4,6 +4,13 @@ sidebar_label: "Release notes"
 
 # TuxedoART Agent release notes
 
+## TuxedoART Agent 23.0.0
+
+2024 October
+
+
+:white_check_mark: **TUXEDOART-15**: Fixed a problem with the msgin file watcher not processing event files when monitored directory is a shared folder on Linux Cluster.
+
 ## TuxedoART Agent 21.0.1
 
 2024 March
