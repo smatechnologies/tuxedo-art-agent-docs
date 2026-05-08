@@ -1,48 +1,64 @@
 module.exports = {
   mySidebar: [
-    'index',
+    'overview',
     'release-notes',
     {
-      type: 'category', 
+      type: 'category',
       label: 'Installation',
-      collapsed: false,
+      collapsed: true,
+      link: {
+        type: 'doc',
+        id: 'installation/installation-overview',
+      },
       items: [
         'installation/introduction',
         'installation/new-installation',
         'installation/upgrade-installation',
-      ], 
+      ],
     },
     {
-      type: 'category', 
+      type: 'category',
       label: 'Administration',
-      collapsed: false,
+      collapsed: true,
+      link: {
+        type: 'doc',
+        id: 'administration/administration-overview',
+      },
       items: [
         'administration/configuration-file',
         'administration/agent-commands',
-      ], 
+      ],
     },
     {
-      type: 'category', 
+      type: 'category',
       label: 'Advanced features',
-      collapsed: false,
+      collapsed: true,
+      link: {
+        type: 'doc',
+        id: 'advanced-features/advanced-features-overview',
+      },
       items: [
         'advanced-features/executing-jobs',
         'advanced-features/step-feedback',
         'advanced-features/utilities',
         'advanced-features/logging',
         'advanced-features/msgin',
-      ], 
+      ],
     },
     {
-      type: 'category', 
+      type: 'category',
       label: 'Reference',
-      collapsed: false,
+      collapsed: true,
+      link: {
+        type: 'doc',
+        id: 'reference/reference-overview',
+      },
       items: [
         'reference/job-return-codes',
         'reference/startup-messages',
         'reference/msgin-messages',
         'reference/processing-messages',
-      ], 
+      ],
     },
   ],
 };
