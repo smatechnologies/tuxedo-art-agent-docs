@@ -1,10 +1,29 @@
+---
+title: Using step feedback
+description: "How the Tuxedo ART Agent monitors the job log and returns step completion feedback to OpCon for event processing."
+tags:
+  - Concept
+  - System Administrator
+  - Agents
+---
+
 # Using step feedback
 
-The Tuxedo Agent provides the capability to monitor the job log to determine if feedback should be returned to OpCon upon step completion.
+## What is it?
 
-:::info
-This example shows a job log that includes a step completion definition. The name of the step is STEP1. This must match the Step Name in the Step Control definition. The agent scans the log for the 'END PHASE <step name\>' and when a match is found, a check is made to see if the JOBRC value (without the leading C character) matches the completion code values. If there is a match, the LSAM feedback is triggered.
-:::
+Step feedback lets the Tuxedo ART Agent return information to OpCon when an individual step in a Tuxedo ART job finishes. While a job is running, the agent monitors the job log for step completion markers. When a defined step finishes with a matching completion code, the agent submits a feedback message to OpCon, which can be used to process events.
+
+## How matching works
+
+The agent matches a step in three pieces:
+
+- **Step name.** The agent scans the job log for `END PHASE <step name>` and compares the name to the step names in the job's **Step Control** definition.
+- **Completion code.** When the agent finds a matching `END PHASE` line, it reads the `JOBRC` value (without the leading `C`) and compares it to the completion codes configured for that step.
+- **Trigger.** When both the step name and completion code match, the agent triggers the configured feedback message to OpCon.
+
+## Example job log
+
+The log below shows an empty test job with steps `START`, `STEP1`, `STEP2`, `STEP3`, and `ENDJOB`. Each `END PHASE` line is what the agent uses to detect step completion.
 
 ```console
 JOB JOBA BEGIN AT 2016/12/17 23:04:15
@@ -25,19 +44,13 @@ BEGIN PHASE STEP1 AT 2016/12/17 23:04:15
 
 label is STEP1
 
-step1
+step2
 
-END PHASE STEP1 AT 2016/12/17 23:04:15 (RC=C0000, JOBRC=C0007, ELAPSED=0)
+END PHASE STEP1 AT 2016/12/17 23:05:00 (RC=C0000, JOBRC=C0000, ELAPSED=45)
 
-in while
-
-BEGIN PHASE ENDJOB AT 2016/12/17 23:04:15
-
-label is ENDJOB
+BEGIN PHASE ENDJOB AT 2016/12/17 23:05:00
 
 end
-
-hello, that is in JOBA
 
 END PHASE ENDJOB AT 2016/12/17 23:05:55 (RC=C0000, JOBRC=C0000, ELAPSED=100)
 
@@ -46,4 +59,21 @@ END PHASE ENDJOB AT 2016/12/17 23:05:55 (RC=C0000, JOBRC=C0000, ELAPSED=100)
 JOB ENDED WITH CODE (C0000) AT 2016/12/17 23:05:55
 ```
 
-When using feedback, it must be understood that feedback messages are returned to OpCon from the Agent on job status messages for that particular job. If the job completes then no feedback messages for that job can be sent. Therefore, if it is desired to submit a feedback message just before job completion, a sleep of 10 seconds should be introduced in the script before job completion, allowing any outstanding feedback messages to be submitted to OpCon before the job finishes.
+## Important: send feedback before the job ends
+
+Feedback messages are returned to OpCon on job status messages for that particular job. After the job completes, no feedback messages for that job can be sent.
+
+:::caution
+If you need to submit a feedback message just before job completion, add a 10-second sleep in the script before job completion. This gives the agent time to submit any outstanding feedback messages to OpCon before the job finishes.
+:::
+
+## Related topics
+
+- [Running Tuxedo ART jobs](./executing-jobs.md) — Where step control definitions live in the job definition.
+- [Logging](./logging.md) — Full structure of the job log that step feedback scans.
+
+## Glossary
+
+- **JOBRC** — Job return code value reported in the `END PHASE` log line. The agent compares this value (without the leading `C`) to the configured completion codes when deciding whether to send feedback.
+- **Step Control** — Configuration on the Tuxedo ART job definition that lists which step names and completion codes trigger feedback to OpCon.
+- **END PHASE** — Job log marker that indicates a step has finished. The agent scans for these markers to detect step completions.
