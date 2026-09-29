@@ -10,6 +10,27 @@ tags:
 
 # Tuxedo ART Agent release notes
 
+## 26
+
+### 26.0.0
+
+2026 September
+
+Biggest change is the move from Java 1.8 to Java 11. This was required to clear various CVE vunerabilities.
+JavaProxy-Agent also upgraded to Java 11 to clear CVE vunerabilities and support newer Netty libraries.
+
+:eight_spoked_asterisk: **OCAG-1676**: fixed the following issues:
+- Upgraded JavaProxy Agent library to version 26.0.1 which included updated libraries to Support Java 11 and corrected channel recovery after network outages.
+- Upgraded to Java 11 and associated libraries to support Java 11
+- Corrected problems encountered during job recovery following outages.
+- Set test / simulation code changes within new ConnectorSimulation configuration (default is set to false).
+
+### Why this matters
+
+Removes CVE vunerabilities discovered during scans.
+Recovers OpCon connections after network outages.
+Recovers running jobs correctly after netork outages.
+
 ## 23
 
 ### 23.0.0
