@@ -25,7 +25,7 @@ For every Tuxedo ART job it runs, the agent records detail in a job log that is 
 
 ## How to read the example
 
-The example below shows a JORS output capturing all four segments. Horizontal rules of dashes mark the segment boundaries. Lines beginning with `stdout :` are output captured from `artjesadmin`. The `jeslog ---` line marks the start of segment 2; the `log ---` line marks the start of segment 3; and lines beginning with `Status Job` belong to segment 4.
+The example below shows a JORS output capturing all four segments. It was captured with an earlier release of the agent; the banner at the top of your job output shows the version you have installed. Horizontal rules of dashes mark the segment boundaries. Lines beginning with `stdout :` are output captured from `artjesadmin`. The `jeslog ---` line marks the start of segment 2; the `log ---` line marks the start of segment 3; and lines beginning with `Status Job` belong to segment 4.
 
 ```console
 Standard Out :

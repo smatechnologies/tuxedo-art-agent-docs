@@ -19,14 +19,14 @@ Sometimes you can receive non-numeric characters in the return code. When this h
 |--- |--- |
 |0 - 9999|Job completion code (prefixed by C, for example, C0000 – C9999)|
 |9999|Job completion code contained non-numeric characters; refer to job log|
-|10000 - 19999|Job completion code System Abend (prefixed by S, for example, U0000 – S9999)|
+|10000 - 19999|Job completion code System Abend (prefixed by S, for example, S0000 – S9999)|
 |19999|Job completion code contained non-numeric characters; refer to job log|
-|20000 - 29999|Job completion code User Abend (prefixed by U, for example, U0000 – S9999)|
+|20000 - 29999|Job completion code User Abend (prefixed by U, for example, U0000 – U9999)|
 |29999|Job completion code contained non-numeric characters; refer to job log|
 |30000|artjesadmin: Job completed successfully|
 |30001|artjesadmin: Utility command failed|
 |30003|artjesadmin: Job failed|
-|30004|artjesadmin: Job was cancelled|
+|30004|artjesadmin: Job was canceled|
 |30005|artjesadmin: Job is in conversion state|
 |30006|artjesadmin: Job is running|
 |30007|artjesadmin: Job is queued waiting for conversion process|

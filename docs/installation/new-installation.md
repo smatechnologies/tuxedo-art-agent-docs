@@ -25,9 +25,13 @@ Make sure you have:
 
 The install process registers the agent as a service.
 
+:::note
+As of release 26.0.0, the agent uses Java 11 rather than Java 1.8. For details, refer to [Release notes](../release-notes.md).
+:::
+
 ## Install the Tuxedo ART Agent
 
-To install the Tuxedo ART Agent, complete the following steps.
+To install the Tuxedo ART Agent, complete the following steps:
 
 ### Extract the package
 
@@ -36,9 +40,8 @@ To install the Tuxedo ART Agent, complete the following steps.
 
 ### Run the install script
 
-3. Edit the **install_tux** script to set the *user code the agent must run under* to connect to Tuxedo before installing the agent.
-4. Change the user code `<system>` in the script to the *user code associated with the Tuxedo environment*.
-5. Install the Tuxedo ART Agent by running the **install_tux** script. The script expects three positional arguments:
+3. Edit the **install_tux** script and replace the user code `<system>` with the *user code associated with the Tuxedo environment*. The agent must run under this user code to connect to Tuxedo.
+4. Install the Tuxedo ART Agent by running the **install_tux** script. The script expects three positional arguments:
 
 | # | Argument | Value | Description |
 |---|---|---|---|
@@ -48,20 +51,20 @@ To install the Tuxedo ART Agent, complete the following steps.
 
 ### Customize the installation scripts
 
-6. Edit the **SMA_tux_agent** script located in the installation directory and replace the user code `<system>` with the *user code associated with the Tuxedo environment*.
-7. Edit the **artjesadmin_o**, **artjesadmin_ov**, and **artjesadmin_s** scripts located in the installation directory and replace the *default value* (`cd /home/system/TuxedoAgent`) with the *directory of the installation*.
-8. Edit the **XPSCOMM** script located in the installation directory and replace the *default value* (`-Dconfigfile=/home/system/TuxedoAgent/Agent.config`) with the *directory of the installation*.
+5. Edit the **SMA_tux_agent** script located in the installation directory and replace the user code `<system>` with the *user code associated with the Tuxedo environment*.
+6. Edit the **artjesadmin_o**, **artjesadmin_ov**, and **artjesadmin_s** scripts located in the installation directory and replace the *default value* (`cd /home/system/TuxedoAgent`) with the *directory of the installation*.
+7. Edit the **XPSCOMM** script located in the installation directory and replace the *default value* (`-Dconfigfile=/home/system/TuxedoAgent/Agent.config`) with the *path of the Agent.config file in the installation directory* (for example, `-Dconfigfile=/usr/local/SMATuxedoAgents/3100/Agent.config`).
 
 ### Configure the agent and Tuxedo environment
 
-9. Edit the **Agent.config** file located in the installation directory by setting the *required values* for the installation. For details on each setting, refer to [Agent.config file configuration](../administration/configuration-file.md).
-10. Copy the **setenv.sh** Tuxedo environment script associated with the application to the Tuxedo Agent installation directory (for example, `/usr/local/SMATuxedoAgents/3100`).
+8. Edit the **Agent.config** file located in the installation directory by setting the *required values* for the installation. For details on each setting, refer to [Agent.config file configuration](../administration/configuration-file.md).
+9. Copy the **setenv.sh** Tuxedo environment script associated with the application to the Tuxedo Agent installation directory (for example, `/usr/local/SMATuxedoAgents/3100`).
 
 ## Create the machine in OpCon
 
 When a Tuxedo ART Agent is installed, you must create a machine record in OpCon with a unique machine name and socket number. If the machine was previously defined in OpCon, you can skip this procedure.
 
-To create the machine record in OpCon, complete the following steps.
+To create the machine record in OpCon, complete the following steps:
 
 ### Open the Machines screen
 
@@ -96,6 +99,15 @@ To create the machine record in OpCon, complete the following steps.
 20. Right-select over the graphic in the **Communication Status** frame to enable the menu.
 21. Select **Start Communication** from the menu.
 22. Select the **x** to the right of the **Machines** tab to close the **Machines** screen.
+
+## Start and verify the agent
+
+After the agent is installed and the machine is defined in OpCon, start the agent and confirm that it communicates with OpCon.
+
+To start and verify the agent, complete the following steps:
+
+1. Start the agent by running `./SMA_tux_agent start` from the installation directory. For details, refer to [Agent commands](../administration/agent-commands.md).
+2. Confirm that the machine is communicating with OpCon in the **Communication Status** frame of the **Machines** screen.
 
 ## Next steps
 
