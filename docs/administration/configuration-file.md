@@ -12,7 +12,7 @@ tags:
 
 ## What is it?
 
-**Agent.config** is the Tuxedo ART Agent configuration file. It lives in the agent installation root directory and is organized as INI-style sections. To configure the agent, set the required properties in **Agent.config** and save the file.
+**Agent.config** is the Tuxedo ART Agent configuration file. Each agent installation has its own **Agent.config** in its installation directory (`<root directory>/<port>`, for example `/usr/local/SMATuxedoAgents/3100`). The file is organized as INI-style sections. To configure the agent, set the required properties in **Agent.config** and save the file.
 
 For the initial installation, **Agent.config** is edited as part of [New installation](../installation/new-installation.md). Use this page as the reference when you set those values or change them later.
 
@@ -36,14 +36,14 @@ Three settings are critical to operation:
 
 | Setting | Default | Description |
 |---|---|---|
-| `SocketNumberToSAM` | `18100` | Socket number through which the agent and the SMANetCom communicate. This number must match the machine's socket number defined in the OpCon/xps Enterprise Manager. If multiple agents are installed on one machine, each must use a unique value. For unused-port guidance, refer to the [Internet Assigned Numbers Authority](https://www.iana.org). |
-| `AllowedIPAddress_1` … `AllowedIPAddress_5` | `ANY` (slot 1); blank (slots 2–5) | Restricts incoming SMANetCom communication to specific TCP/IP addresses. Set `ANY` to accept communication from any address; set a specific address (for example, `126.40.90.231`) to accept communication only from that address. The agent refuses connections from other addresses. Use the additional slots when multiple SMANetCom hosts must be allowed. This parameter is case-sensitive. |
+| `SocketNumberToSAM` | `18100` | Socket number through which the agent and the SMANetCom communicate. This number must match the machine's socket number defined in the Enterprise Manager. If multiple agents are installed on one machine, each must use a unique value. For unused-port guidance, refer to the [Internet Assigned Numbers Authority](https://www.iana.org). |
+| `AllowedIPAddress_1` … `AllowedIPAddress_5` | `ANY` (slot 1); blank (slots 2–5) | Restricts incoming SMANetCom communication to specific TCP/IP addresses. Set `ANY` to accept communication from any address; set a specific address (for example, `192.0.2.10`) to accept communication only from that address. The agent refuses connections from other addresses. Use the additional slots when multiple SMANetCom hosts must be allowed. This parameter is case-sensitive. |
 
 ### `[Process Creation Parameters]`
 
 | Setting | Default | Description |
 |---|---|---|
-| `CaptureJobOutput` | `TRUE` | Enables or disables creation of job output files for each OpCon job. When `TRUE`, the agent saves the output from each started job in a `JobOutput` subdirectory under the agent directory. Each file is named `<OpConxps job name up to 12 chars>_<unique number>.TXT`. The View Job Output feature works only when this setting is `TRUE`. |
+| `CaptureJobOutput` | `TRUE` | Enables or disables creation of job output files for each OpCon job. When `TRUE`, the agent saves the output from each started job in a `JobOutput` subdirectory under the agent directory. Each file is named `<OpCon job name up to 12 chars>_<unique number>.TXT`. The View Job Output feature works only when this setting is `TRUE`. |
 
 ### `[Debug Options]`
 
@@ -52,7 +52,7 @@ Three settings are critical to operation:
 | `ConnectorDebug` | `OFF` | Enables debug tracing in the agent. Set to `ON` to enable; set to `OFF` to disable. |
 
 :::caution
-Do not turn `ConnectorDebug` on unless directed by SMA.
+Do not turn `ConnectorDebug` on unless directed by Continuous Support.
 :::
 
 ### `[JORS Settings]`
@@ -98,7 +98,7 @@ AllowedIPAddress_5=
 CaptureJobOutput=TRUE          # This MUST be either TRUE or FALSE
 
 [Debug Options]
-ConnectorDebug=ON
+ConnectorDebug=OFF
 
 [JORS Settings]
 JORSSocket=18110
@@ -106,12 +106,12 @@ JORSSocket=18110
 [Application Connection Settings]
 ConnectorName=Tuxedo Agent
 JesrootDirectory=/home/system/OraHome_1/art12.1.3.0.0/Batch_RT/sample/simpjob
-SubstitutionFileDirectory=/usr/local/SMATuxedoAgents/substitutions
+SubstitutionFileDirectory=/usr/local/SMATuxedoAgents/3100/substitutions
 TuxedoEnvironment=setenv
 WorkingDirectory=/usr/local/SMATuxedoAgents/3100
 MsgInDirectory=/usr/local/SMATuxedoAgents/3100/msgin
-MsgInOpConEventUser=My5YBvYZ66+2Ao6qXnFnBw==
-MsgInOpConEventUserPassword=3zXskIjsWA4DiGObwDe3eQ==
+MsgInOpConEventUser=<encrypted user name>
+MsgInOpConEventUserPassword=<encrypted password>
 JobStatusCheckInterval=5
 JobStatusCheckInitialPollDelay=5
 ```
@@ -124,7 +124,7 @@ JobStatusCheckInitialPollDelay=5
 
 ## Glossary
 
-- **Agent.config** — Configuration file in the agent installation root directory that defines runtime parameters for the Tuxedo ART Agent.
+- **Agent.config** — Configuration file in the agent installation directory that defines runtime parameters for the Tuxedo ART Agent.
 - **JORS (Job Output Retrieval System)** — OpCon component that retrieves job output information from the agent.
 - **MSGIN** — File-watcher capability that allows the agent to submit events to OpCon by reading event files dropped into a monitored directory.
 - **SMANetCom** — OpCon component that the agent communicates with over the configured socket.

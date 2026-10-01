@@ -14,7 +14,7 @@ tags:
 
 The Tuxedo ART Agent is an OpCon agent that allows OpCon to schedule Tuxedo ART Batch jobs within the Tuxedo ART environment. The Tuxedo ART Agent communicates with the Oracle Tuxedo environment to submit jobs and requires that the Tuxedo environment is active to submit jobs.
 
-The current version is **23.0.0**.
+The current version is **26.0.0**.
 
 ## How it works
 
@@ -36,7 +36,7 @@ No. The Tuxedo environment must be active for the agent to submit jobs.
 
 **Does the Tuxedo ART Agent support multiple Tuxedo applications on a single machine?**
 
-A single Tuxedo ART Agent installation is bound to one Tuxedo application through the `JesRootDirectory` configuration. To support additional Tuxedo applications installed in separate directories, install a separate Tuxedo ART Agent for each application directory and define a separate Tuxedo ART machine in OpCon for each.
+A single Tuxedo ART Agent installation is bound to one Tuxedo application through the `JesrootDirectory` configuration. To support additional Tuxedo applications installed in separate directories, install a separate Tuxedo ART Agent for each application directory and define a separate Tuxedo ART machine in OpCon for each.
 
 **How does the agent return job status to OpCon?**
 
@@ -45,7 +45,7 @@ The agent uses the `artjesadmin` utility to track the unique job ID returned at 
 ## Glossary
 
 - **artjesadmin** — Tuxedo ART utility used by the agent to start jobs and poll their completion status.
-- **Agent.config** — Configuration file in the agent installation root directory that defines runtime parameters for the Tuxedo ART Agent.
+- **Agent.config** — Configuration file in the agent installation directory that defines runtime parameters for the Tuxedo ART Agent.
 - **JORS (Job Output Retrieval System)** — OpCon component used to retrieve job output information from the agent.
 - **MSGIN** — File-watcher capability that allows the agent to submit events to OpCon by dropping event files in a monitored directory.
 - **XPSCOMM** — Script that can be called from a Tuxedo job script to submit events to OpCon through the MSGIN directory.

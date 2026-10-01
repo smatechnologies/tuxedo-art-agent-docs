@@ -1,6 +1,6 @@
 ---
 title: Upgrade installation
-description: "Upgrade an existing Tuxedo ART Agent installation in place. Your configuration files are preserved automatically."
+description: "Upgrade an existing Tuxedo ART Agent installation in place by installing the new package to the same directory as the previous installation."
 tags:
   - Procedure
   - System Administrator
@@ -11,7 +11,7 @@ tags:
 
 ## What is it?
 
-An upgrade replaces the Tuxedo ART Agent files in an existing installation directory with the new package. The installation package preserves your configuration files automatically, so you do not need to re-create the **Agent.config** file or re-edit the customized scripts after the upgrade.
+An upgrade replaces the Tuxedo ART Agent files in an existing installation with the new package. You install the new package to the same directory as the previous installation. The installation package preserves your configuration files.
 
 ## Before you begin
 
@@ -22,11 +22,22 @@ Make sure you have:
 
 ## Upgrade the agent
 
-To upgrade the Tuxedo ART Agent, install the new package to the same directory as the previous installation. The installation steps are the same as those documented in [New installation](./new-installation.md), with the existing installation directory passed as the root directory argument.
+:::caution
+Confirm which `install_tux` mode and root directory argument to use for an upgrade with Continuous Support before you run the script. The installation directory is `<root directory>/<port>`, so the root directory argument is not the installation directory itself.
+:::
+
+To upgrade the Tuxedo ART Agent, complete the following steps:
+
+1. Copy **Agent.config** and the scripts you edited during installation (**SMA_tux_agent**, **artjesadmin_o**, **artjesadmin_ov**, **artjesadmin_s**, and **XPSCOMM**) from the installation directory to a backup location.
+2. Stop the agent by running `./SMA_tux_agent stop` from the installation directory.
+3. Install the new package to the same directory as the previous installation, following [New installation](./new-installation.md).
+4. Compare the scripts in the installation directory with your backup copies, and reapply your edits to any script that no longer contains them.
+5. Start the agent by running `./SMA_tux_agent start` from the installation directory.
+6. Confirm that the machine is communicating with OpCon in the **Communication Status** frame of the **Machines** screen in the Enterprise Manager.
 
 ## What is preserved
 
-The installation package preserves your configuration files automatically. You do not need to re-edit **Agent.config** or re-supply your settings after the upgrade.
+The installation package preserves your configuration files. The backup in step 1 protects the scripts you edited during installation, which the package also contains.
 
 ## Next steps
 

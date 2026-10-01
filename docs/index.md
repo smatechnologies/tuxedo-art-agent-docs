@@ -1,4 +1,10 @@
 ---
+title: Tuxedo ART Agent
+description: "Documentation for the Tuxedo ART Agent, which lets OpCon schedule and monitor Tuxedo ART Batch jobs."
+tags:
+  - Overview
+  - System Administrator
+  - Agents
 slug: '/'
 sidebar_label: 'Tuxedo ART Agent'
 hide_table_of_contents: true
