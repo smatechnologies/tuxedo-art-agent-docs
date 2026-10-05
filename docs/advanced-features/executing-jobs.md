@@ -25,13 +25,17 @@ When OpCon submits a Tuxedo ART job, the agent does the following:
 
 ## Defining a Tuxedo ART job
 
-You define jobs in OpCon using the **Tuxedo ART** job type. Each definition includes:
+You define jobs in OpCon using the **Tuxedo ART** job type in the Enterprise Manager. Each definition includes the following fields and tabs:
 
-- **Script name** — The script `artjesadmin` runs.
-- **Job owner** — The user under which the job runs.
-- **Variable definitions** — Values to substitute into the script during initialization.
-- **Step control definitions** — Step names and completion codes that trigger feedback to OpCon. See [Step feedback](./step-feedback.md).
-- **Failure criteria** — Conditions that mark the job as failed.
+| Field or tab | Description |
+|---|---|
+| **Script** | The script `artjesadmin` runs. Required. |
+| **Owner** | Set to `*` when left blank. |
+| **JESRoot Directory** | Optional. The job's JES root directory. |
+| **Tuxedo Environment** | Optional. The name of the Tuxedo environment script, which must end in `.sh` unless you enter it as a property token. |
+| **Variables** tab | Values to substitute into the script during initialization. Each variable name starts with `&`. |
+| **Step Control** tab | Step names and completion code ranges that trigger feedback to OpCon. See [Step feedback](./step-feedback.md). |
+| **Failure Criteria** tab | Conditions that mark the job as failed. At least one failure criterion is required. |
 
 You can only define a Tuxedo ART job if a Tuxedo ART machine has already been defined. For details, refer to [Tuxedo ART Job Details](https://help.smatechnologies.com/opcon/core/job-types/tuxedo-art) in the **Concepts** online help.
 
@@ -43,7 +47,7 @@ The image above shows an example Tuxedo ART job definition.
 
 ## One application per machine
 
-A Tuxedo ART Agent installation is bound to a single Tuxedo ART application by the **JesRootDirectory** setting in **Agent.config**.
+A Tuxedo ART Agent installation is bound to a single Tuxedo ART application by the **JesrootDirectory** setting in **Agent.config**.
 
 :::note
 If your environment has multiple Tuxedo ART applications installed in separate directories, install a separate Tuxedo ART Agent for each application directory and define a separate Tuxedo ART machine in OpCon for each.
@@ -53,11 +57,11 @@ If your environment has multiple Tuxedo ART applications installed in separate d
 
 - [Step feedback](./step-feedback.md) — Return step completion information to OpCon during a running job.
 - [Logging](./logging.md) — How job log content is structured and returned to OpCon.
-- [Agent.config file configuration](../administration/configuration-file.md) — The **JesRootDirectory**, **SubstitutionFileDirectory**, and `JobStatusCheck*` settings referenced above.
+- [Agent.config file configuration](../administration/configuration-file.md) — The **JesrootDirectory**, **SubstitutionFileDirectory**, and `JobStatusCheck*` settings referenced above.
 
 ## Glossary
 
 - **artjesadmin** — Tuxedo ART utility the agent uses to start jobs and monitor their status.
-- **JesRootDirectory** — Configuration value that ties a Tuxedo ART Agent installation to a single Tuxedo ART application directory.
+- **JesrootDirectory** — Configuration value that ties a Tuxedo ART Agent installation to a single Tuxedo ART application directory.
 - **JORS (Job Output Retrieval System)** — OpCon component that retrieves job output information from the agent.
 - **Substitution file** — Unique file containing variable definitions that is passed to `artjesadmin` so Tuxedo ART can substitute values into the target script.
